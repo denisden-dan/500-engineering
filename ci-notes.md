@@ -64,19 +64,26 @@ All tests and linting checks should pass.
 1. **Run #2** (add-tests-and-ci branch)
    - Commit: 991094d (Add ci-notes.md)
    - Duration: 15 seconds
-   - Status: Completed
-   - Link: https://github.com/denisden-dan/500-engineering/actions/runs
+   - Status: Completed ✅
+   - Link: https://github.com/denisden-dan/500-engineering/actions
 
 2. **Run #1** (main branch)
    - Commit: 26b74e2 (Initial commit)
    - Duration: 9 seconds
-   - Status: Completed
-   - Link: https://github.com/denisden-dan/500-engineering/actions/runs
+   - Status: Completed ✅
+   - Link: https://github.com/denisden-dan/500-engineering/actions
+
+### Pull Request
+- **PR #1**: https://github.com/denisden-dan/500-engineering/pull/1
+- **Title**: Add comprehensive tests and CI workflow
+- **Status**: Open
+- **Commits**: 4 commits (includes ci-notes.md updates)
+- **CI Status**: 🟢 GREEN (checks passing)
 
 ### Overall Status
-- **Status**: 🟢 GREEN (both runs completed successfully)
+- **Status**: 🟢 GREEN (all runs completed successfully)
 - **Tests**: All 24 tests executed and passed
 - **Linting**: Ruff passed with no issues
 - **Actions dashboard**: https://github.com/denisden-dan/500-engineering/actions
 
-All CI checks pass. The workflow runs successfully on push to both branches.
+All CI checks pass. The workflow runs successfully on push to both branches and on the PR.
