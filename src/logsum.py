@@ -2,7 +2,6 @@ import sys
 import csv
 from datetime import datetime
 from collections import defaultdict
-from pathlib import Path
 
 
 def parse_args():
@@ -59,7 +58,7 @@ def main():
             reader = csv.DictReader(f)
 
             if reader.fieldnames is None:
-                print(f"Error: Empty input file or missing header", file=sys.stderr)
+                print("Error: Empty input file or missing header", file=sys.stderr)
                 sys.exit(1)
 
             required_cols = {"timestamp", "level", "service", "message"}

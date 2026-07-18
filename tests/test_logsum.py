@@ -1,10 +1,8 @@
 import pytest
 import csv
-import os
 import sys
 import subprocess
 from pathlib import Path
-from io import StringIO
 
 
 @pytest.fixture
@@ -489,7 +487,7 @@ def test_multiple_groups_with_mixed_valid_invalid_timestamps(tmp_data_dir):
         "2026-07-18T10:03:00,ERROR,payment,Invalid\n"
     )
 
-    result = subprocess.run(
+    subprocess.run(
         [sys.executable, "src/logsum.py", "--input", str(events_file), "--output", str(output_file)],
         cwd=Path(__file__).parent.parent,
         check=True
@@ -521,7 +519,7 @@ def test_sample_data_from_spec(tmp_data_dir):
         "2026-07-18T10:05:00,INFO,cache,Cache miss\n"
     )
 
-    result = subprocess.run(
+    subprocess.run(
         [sys.executable, "src/logsum.py", "--input", str(events_file), "--output", str(output_file)],
         cwd=Path(__file__).parent.parent,
         check=True
@@ -556,7 +554,7 @@ def test_whitespace_only_level_treated_as_missing(tmp_data_dir):
         "2026-07-18T10:01:00,,auth,msg\n"
     )
 
-    result = subprocess.run(
+    subprocess.run(
         [sys.executable, "src/logsum.py", "--input", str(events_file), "--output", str(output_file)],
         cwd=Path(__file__).parent.parent,
         check=True
