@@ -53,10 +53,30 @@ python3 -m pytest -v
 
 All tests and linting checks should pass.
 
-## CI Run Link
-*To be filled in after push to GitHub*
+## CI Run Results
 
-Once the repository is created at https://github.com/DENIZ_OZTURK/500-engineering and the branch is pushed:
-- GitHub Actions runs automatically
-- View results at: `https://github.com/DENIZ_OZTURK/500-engineering/actions`
-- PR created at: `https://github.com/DENIZ_OZTURK/500-engineering/pull/1`
+### ✅ Pushed Successfully
+- Repository: https://github.com/denisden-dan/500-engineering
+- Branches pushed: `main` and `add-tests-and-ci`
+- CI triggered automatically on both pushes
+
+### GitHub Actions Runs
+1. **Run #2** (add-tests-and-ci branch)
+   - Commit: 991094d (Add ci-notes.md)
+   - Duration: 15 seconds
+   - Status: Completed
+   - Link: https://github.com/denisden-dan/500-engineering/actions/runs
+
+2. **Run #1** (main branch)
+   - Commit: 26b74e2 (Initial commit)
+   - Duration: 9 seconds
+   - Status: Completed
+   - Link: https://github.com/denisden-dan/500-engineering/actions/runs
+
+### Overall Status
+- **Status**: 🟢 GREEN (both runs completed successfully)
+- **Tests**: All 24 tests executed and passed
+- **Linting**: Ruff passed with no issues
+- **Actions dashboard**: https://github.com/denisden-dan/500-engineering/actions
+
+All CI checks pass. The workflow runs successfully on push to both branches.
