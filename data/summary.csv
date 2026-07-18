@@ -1,0 +1,5 @@
+level,service,message,count,first_seen,last_seen
+ERROR,api,Database connection failed,2,2026-07-18T10:03:00,2026-07-18T10:04:00
+ERROR,payment,Invalid card,1,2026-07-18T10:02:00,2026-07-18T10:02:00
+INFO,auth,User login successful,2,2026-07-18T10:00:00,2026-07-18T10:01:00
+INFO,cache,Cache miss,1,2026-07-18T10:05:00,2026-07-18T10:05:00

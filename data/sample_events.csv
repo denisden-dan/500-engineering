@@ -1,0 +1,8 @@
+timestamp,level,service,message
+2026-07-18T10:00:00,INFO,auth,User login successful
+2026-07-18T10:01:00,INFO,auth,User login successful
+2026-07-18T10:02:00,ERROR,payment,Invalid card
+not-a-date,WARN,api,Request timeout
+2026-07-18T10:03:00,error,api,Database connection failed
+2026-07-18T10:04:00,ERROR,api,Database connection failed
+2026-07-18T10:05:00,INFO,cache,Cache miss
