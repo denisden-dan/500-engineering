@@ -543,6 +543,56 @@ def test_sample_data_from_spec(tmp_data_dir):
     assert cache["count"] == "1"
 
 
+def test_min_count_filters_below_threshold(tmp_data_dir):
+    """Test --min-count excludes groups below threshold and keeps at/above."""
+    events_file = tmp_data_dir / "events.csv"
+    output_file = tmp_data_dir / "summary.csv"
+
+    events_file.write_text(
+        "timestamp,level,service,message\n"
+        "2026-07-18T10:00:00,INFO,auth,Login\n"
+        "2026-07-18T10:01:00,INFO,auth,Login\n"
+        "2026-07-18T10:02:00,INFO,auth,Login\n"
+        "2026-07-18T10:03:00,ERROR,payment,Invalid\n"
+        "2026-07-18T10:04:00,WARN,cache,Miss\n"
+    )
+
+    subprocess.run(
+        [sys.executable, "src/logsum.py", "--input", str(events_file),
+         "--output", str(output_file), "--min-count", "3"],
+        cwd=Path(__file__).parent.parent,
+        check=True
+    )
+
+    rows = list(csv.DictReader(output_file.open()))
+    assert len(rows) == 1
+    assert rows[0]["level"] == "INFO"
+    assert rows[0]["count"] == "3"
+
+
+def test_default_no_min_count_outputs_all_groups(tmp_data_dir):
+    """REGRESSION: without --min-count, all groups are output unchanged."""
+    events_file = tmp_data_dir / "events.csv"
+    output_file = tmp_data_dir / "summary.csv"
+
+    events_file.write_text(
+        "timestamp,level,service,message\n"
+        "2026-07-18T10:00:00,INFO,auth,Login\n"
+        "2026-07-18T10:01:00,INFO,auth,Login\n"
+        "2026-07-18T10:02:00,ERROR,payment,Invalid\n"
+        "2026-07-18T10:03:00,WARN,cache,Miss\n"
+    )
+
+    subprocess.run(
+        [sys.executable, "src/logsum.py", "--input", str(events_file), "--output", str(output_file)],
+        cwd=Path(__file__).parent.parent,
+        check=True
+    )
+
+    rows = list(csv.DictReader(output_file.open()))
+    assert len(rows) == 3
+
+
 def test_whitespace_only_level_treated_as_missing(tmp_data_dir):
     """Test that whitespace-only level is treated as missing after trimming."""
     events_file = tmp_data_dir / "events.csv"

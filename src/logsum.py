@@ -8,6 +8,7 @@ def parse_args():
     """Parse command-line arguments."""
     input_file = "data/events.csv"
     output_file = "data/summary.csv"
+    min_count = None
     positional = []
 
     args = sys.argv[1:]
@@ -23,6 +24,11 @@ def parse_args():
             if i < len(args):
                 output_file = args[i]
             i += 1
+        elif args[i] == "--min-count":
+            i += 1
+            if i < len(args):
+                min_count = int(args[i])
+            i += 1
         else:
             positional.append(args[i])
             i += 1
@@ -32,7 +38,7 @@ def parse_args():
     if len(positional) >= 2:
         output_file = positional[1]
 
-    return input_file, output_file
+    return input_file, output_file, min_count
 
 
 def normalize_text(value):
@@ -51,7 +57,7 @@ def parse_timestamp(ts_str):
 
 
 def main():
-    input_file, output_file = parse_args()
+    input_file, output_file, min_count = parse_args()
 
     try:
         with open(input_file, 'r', encoding='utf-8') as f:
@@ -100,6 +106,8 @@ def main():
             writer.writerow(["level", "service", "message", "count", "first_seen", "last_seen"])
 
             for (level, service, message), agg in sorted(groups.items()):
+                if min_count is not None and agg["count"] < min_count:
+                    continue
                 writer.writerow([
                     level,
                     service,

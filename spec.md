@@ -45,6 +45,7 @@ Where:
 - Optional flags:
   - `--input PATH`
   - `--output PATH`
+  - `--min-count N` — only output groups whose `count` is >= N. When unset, all groups are output (no filtering).
 - Exit codes:
   - `0` success
   - `1` invalid input or missing columns
